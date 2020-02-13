@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
+   <title>Register </title>
+  </head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mobile-nav">
+        <ul class="navbar-nav mr-auto">
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="/"> Developers
+            </a>
+          </li> -->
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          <% if(!currentuser){ %>
+            <li class="nav-item">
+              <a class="nav-link" href="/register"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login"> Login</a>
+            </li>
+            <% } else { %>
+              <li><a class="nav-link" href="#"> <i class="fas fa-user-circle" ></i> <%= currentuser.email %></a></li>
+                  <li><a class="nav-link" href="/logout">Log Out</a></li>
+               <%   }%>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Register -->
+  <div class="register">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 m-auto">
+          <h1 class="display-4 text-center">Sign Up</h1>
+          <p class="lead text-center">Create your DevConnector account</p>
+          <form action="/register" method="POST">
+
+            <div class="form-group">  
+                 <input type="email" class="form-control form-control-lg" name="username" placeholder="email" required>
+            </div>
+            
+            <div class="form-group">
+                <input type="text" class="form-control form-control-lg" name="email" placeholder="name" required>
+            </div>
+            
+            <div class="form-group">
+                  <input type="password" class="form-control form-control-lg"  name="password" placeholder="password" required>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-info btn-block mt-4"> submit </button>
+          
+        </form>
+      </div>
+    </div>
+    </div>
+    </div>
+
+</body>
+
+</html>

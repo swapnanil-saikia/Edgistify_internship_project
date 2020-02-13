@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+      <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="css/style.css">
+      <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+      <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
+      <title>Home </title>
+      </head>
+      <body>
+
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+          <div class="container">
+            <a class="navbar-brand" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home </a>
+            <a class="navbar-brand" href="/newpost"> Add new Post </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+      
+            <div class="collapse navbar-collapse" id="mobile-nav">
+              <!-- <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="profiles.html"> Developers
+                  </a>
+                </li>
+              </ul> -->
+      
+              <ul class="navbar-nav ml-auto">
+                <% if(!currentuser){ %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/register"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/login"> Login</a>
+                </li>
+                <% } else { %>
+                  <li><a class="nav-link" href="#"> <i class="fas fa-user-circle" ></i><%= currentuser.email %></a></li>
+                      <li><a class="nav-link" href="/logout">Log Out</a></li>
+                   <%   }%>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+
+<div class="container">
+  <!-- <div class="jumbotron" style="background:#ccebff;">
+    <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0" style="text-shadow:0px 0px 1px #0099cc;">Welcome to Campgrounds</h1>
+    <hr class="mt-2 mb-5">
+    <a href="/newpost" class="btn btn-primary shadow-sm">Add new Post</a>
+  </div> -->
+    <div class="row text-center">
+      <%posts.forEach(function(camps){%>
+      <div class ="col-lg-4 col-md-3 col-sm-6">
+        <figure class="figure">
+          <figcaption class="figure-caption"><p style="font-style: italic;"><strong> Posted By   <%=camps.author.username%> </p></figcaption> </strong>
+          <a href="/post/<%=camps._id%>">
+            <% if(camps.flag!=0){ %>
+            <img src="<%=camps.img%>" alt="img" class="figure-img img-thumbnail img-fluid shadow rounded" id="index"></a>
+            <% } %>
+            <% if(camps.flag===0){ %>
+              <i class="fas fa-user-circle" style="font-size: 200px;"></i>
+              
+              <% } %>
+        </figure>
+
+        <a href="/post/<%=camps._id%>"><button type="button" class="btn btn-outline-primary">See More!!</button></a>
+      </div>
+      <%});%>
+    </div>
+    <br>
+    <!-- <a href="/" class="btn btn-primary shadow">Go Back</a> -->
+</div>
+</body>
+
+</html>
+
+
+
+
+
+
+

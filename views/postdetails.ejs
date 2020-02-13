@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title><%= campground.name%> </title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+      <link rel="stylesheet" href="/stylesheets/main.css">
+     
+      <style>
+      #dt {
+        position:relative;
+        /* width:100px;
+        height:100px;
+        background:red;
+        left:10px;
+        top:100px; */
+      }
+    </style>
+  </head>
+  <body>
+  
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+        <div class="container">
+          <a class="navbar-brand" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home </a>
+          <a class="navbar-brand" href="/newpost"> Add new Post </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="mobile-nav">
+          
+            <ul class="navbar-nav ml-auto navbar-right">
+              <% if(!currentuser){ %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/register"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/login"> Login</a>
+                </li>
+                <% } else { %>
+                  <li><a class="nav-link" href="#"> <i class="fas fa-user-circle" ></i> <%= currentuser.email %></a></li>
+                      <li><a class="nav-link" href="/logout">Log Out</a></li>
+                   <%   }%>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+  
+  <div class="container">
+    <div class="row">
+        <div class="col-md-3">
+          <p class="lead">Details About : </p>
+          <div class="list-group">
+            <p style="font-size: x-large;font-style: italic;"><strong><%= campground.name %> </strong></p>
+          </div>
+          <div id="map"></div>
+        </div>
+        <div class="col-md-9">
+          <div class="thumbnail">
+            <% if(campground.flag===1){ %>
+            <img class="img-responsive" src="<%= campground.img %>">
+            <% } %>
+                        <% if(campground.flag!=1){ %>
+                          <i class="fas fa-user-circle" style="font-size: 400px;padding: 50px;"></i>
+                          
+                          <% } %>
+            <div class="caption-full" id="dt">
+                <!-- <p style="font-size: medium;padding-left: 20px;"><%= campground.description %></p> -->
+              
+              
+              <h4>
+                <em>Submitted by: <%= campground.author.username%></em>
+              </h4>
+              <p style="font-style: italic;font-weight: bold;"><a>Posted On: <%=postdate%></a></p>
+
+              <form action="/post/<%= campground._id %>/like" method="POST" style="display:inline">
+                <button style="border-color: #f3eaea" > 
+                 
+
+                   <i class="fas fa-thumbs-up" style="color:cornflowerblue">  </i>
+               
+                  </button>
+              </form>
+                 <%= campground.likes.length %>
+             
+
+              <form action="/post/<%= campground._id %>/dislike" method="POST"  style="display:inline">
+                <button style="border-color: #f3eaea" >  <i class="fas fa-thumbs-down" style="color:cornflowerblue"></i>
+                  </button>
+              </form>
+              <p style="display:inline"><%= campground.dislikes.length %></p>
+<br><br>
+
+              <p style="font-size: medium;padding-left: 25px;font-style:italic"><%= campground.description %></p>
+              <% if(currentuser && campground.author.id.equals(currentuser._id)){ %>
+              <a class="btn btn-warning" href="/post/<%= campground._id %>/edit">Edit</a>
+              <form action="/post/<%= campground._id %>?_method=DELETE" method="POST" class="delete-form" style="display:inline">
+                <button class="btn btn-danger">Delete</button>
+              </form>
+              <% } %>
+
+              <br> <br>
+             
+
+            </div>
+          </div>
+          <div class="well">
+            
+            <div class="text-right" >
+              <a class="btn btn-success" href="/post/<%= campground._id %>/comment/new">Add New Comment</a>
+            </div>
+            <div class="text-left">
+                <p style="font-style: italic;"><strong>  Below Are The Comments </strong></p>
+              </div>
+            <hr>
+            <% campground.comments.forEach(function(comment){ %>
+            <div class="row">
+              <div class="col-md-12">
+                <strong><%= comment.author.username %> : </strong>
+                <span class="pull-right"></span>
+                <div>
+                 <p style="font-style:italic"><%= comment.body %> </p>
+
+                 <div class="text-right">
+                   
+                    <p style="font-style:italic"><%= comment.f %></p>
+                   
+                 </div>
+
+                 <% if(currentuser && comment.author.id.equals(currentuser._id)){ %>
+                  <div class="">
+                    <!-- <a href="/post/<%=campground._id%>/comment/<%=comment._id%>/edit" class="btn btn-xs btn-warning">EDIT</a> -->
+                    <form class="delete-form" action="/post/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" >
+                        <button  class="btn btn-outline-danger" style = "border-radius: 16px ;padding-bottom: 2px;display: inline;"><p style="font-style: italic;">remove </p></button>
+                    </form>
+                  </div>
+                <% } %>
+                <hr>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+      </div>
+      </div>
+  </body>
+</html>
