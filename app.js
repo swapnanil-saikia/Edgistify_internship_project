@@ -91,7 +91,7 @@ app.use(commentrouter);
 app.use(indexRoute);
 
 
-app.listen(10000,function()
+app.listen(8080,function()
 {
     console.log("Server Is Running");
 });
