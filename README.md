@@ -1,7 +1,6 @@
 # Edgistify_internship_project
 Guideline to run application in local 
 
-IN THE GIT BASH FOLLWING COMMANDS SHOULD BE RUN-
 
 (1) run command " git clone https://github.com/swapnanil-saikia/Edgistify_internship_project.git "
 (2) then got project directory by running command " cd Edgistify_internship_project "
@@ -9,7 +8,9 @@ IN THE GIT BASH FOLLWING COMMANDS SHOULD BE RUN-
 (4) then run command " npm start "
 (5) then open the url " http://localhost:8080/ " in browser.
 
-
+Initially the database is empty because no post has been submitted,
+you can register and post some data and then you will be able to see 
+the post in home page
 
 FEATURES ABOUT THE WEB APPLICATION -
 It is a  web application where
