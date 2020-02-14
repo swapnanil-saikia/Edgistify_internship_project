@@ -21,4 +21,4 @@ It is a  web application where
 (4) users can comemnt on any post after login
 (5) users can edit and delete their own post also(extra feature)
 (6) users can like and dislike also (extra feature) 
-(7) user can delete their own cooment also (extra feature)
+(7) user can delete their own cooment also (extra feature) 
