@@ -8,6 +8,7 @@ var LocalStrategy=require("passport-local");
 var methodoverride = require("method-override");
 var multer = require('multer');
 const isImageUrl = require('is-image-url');
+var seedDB      = require("./seeds");
 
 const ejsLint = require('ejs-lint');
 var path = require('path');
@@ -65,13 +66,27 @@ app.use(function(req,res,next){
 });
 mongoose.connect("mongodb://localhost/Submit",{ useNewUrlParser:true,useCreateIndex:true ,useUnifiedTopology: true });
 
+seedDB();
 
+    var newUser = new User({username:"user2@gmail.com",email:"user2",});
+    User.register(newUser,"password@2",function(err,user){
+      if(err){
+        console.log(user);
+        
+      }
+        passport.authenticate("local")(req,res,function(){
+          
+          
+          console.log(user);
+        });
+      
+    });
 
 app.get('/',(req,res)=>{
     Post.find({},(err,allPost)=>{
         
         if(err){
-            console.log(err);
+            
         }
         else{
             if(isImageUrl()){
