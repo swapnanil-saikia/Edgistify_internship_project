@@ -1,11 +1,13 @@
 # Edgistify_internship_project
 Guideline to run application in local 
 
+IN THE GIT BASH FOLLWING COMMANDS SHOULD BE RUN-
+
 (1) run command " git clone https://github.com/swapnanil-saikia/Edgistify_internship_project.git "
 (2) then got project directory by running command " cd Edgistify_internship_project "
 (3) then run command " npm install "
 (4) then run command " npm start "
-(5) then open the url " http://localhost:8080/ " in browser
+(5) then open the url " http://localhost:8080/ " in browser.
 
 some user emailid and password
 (1) email: user1@gmail.com , password: password@1
